@@ -2,6 +2,7 @@
   lib,
   stdenv,
   testers,
+  fetchpatch,
   fetchFromGitHub,
   autoreconfHook,
   lcms2,
@@ -23,6 +24,14 @@ stdenv.mkDerivation (finalAttrs: {
     tag = finalAttrs.version;
     hash = "sha256-7ETGLRYVvOAChiE4Fr3wKbfFuysg5QtgL/swf1xQbzc=";
   };
+
+  patches = [
+    (fetchpatch {
+      name = "CVE-2026-135177.patch";
+      url = "https://github.com/LibRaw/LibRaw/commit/38181ab0bab4346583dbb4cf3d8c98ac.patch";
+      hash = "sha256-mAXNwe56BPc/ahiv7boh0TMq2NshkGeUBBm/RKwTQ04=";
+    })
+  ];
 
   outputs = [
     "out"
